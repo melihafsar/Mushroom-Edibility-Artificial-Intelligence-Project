@@ -3,12 +3,21 @@ from typing import Annotated
 from fastapi import FastAPI
 from fastapi import FastAPI, File, UploadFile
 from ultralytics import YOLO
+from fastapi.middleware.cors import CORSMiddleware
 import cv2
 import numpy as np
 from keras.models import load_model
 
 app = FastAPI()
 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 yolo = YOLO("./best.pt") 
 cnn = load_model("cnn.h5")
