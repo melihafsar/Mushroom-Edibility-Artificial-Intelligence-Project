@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 from fastapi import FastAPI
 from fastapi import FastAPI, File, UploadFile
@@ -23,4 +23,4 @@ def read_item(file: Annotated[UploadFile, File()]):
     results = model.predict(image_array)
     
     # Return the result
-    return {"probs": results[0].probs.data.cpu().tolist(), "names": results[0].names}
+    return {"yolo": {"probs": results[0].probs.data.cpu().tolist(), "names": results[0].names}}
