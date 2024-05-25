@@ -1,5 +1,5 @@
 import DragDropFiles from "./DragAndDropFiles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type FileContentData = {
   yolo: number[];
@@ -14,10 +14,6 @@ function Dashboard() {
   const handleDataChange = (data: any) => {
     setFileContentData(data);
   };
-
-  useEffect(() => {
-    console.log(fileContentData);
-  }, [fileContentData]);
 
   //   data:{
   //     "yolo": [
@@ -59,24 +55,36 @@ function Dashboard() {
                     margin: "10px",
                   }}
                 >
-                  <div style={{ textAlign: "center", gap: "4px" }}>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      gap: "4px",
+                      fontSize: "1.5rem",
+                    }}
+                  >
                     Yolo Prediction:
                     <p style={{ textAlign: "center" }}>
-                      {` ${(fileContentData.yolo[0] * 100).toFixed(
-                        2
-                      )}% edible -- ${(fileContentData.yolo[1] * 100).toFixed(
-                        2
-                      )}% poisonous`}
+                      {` ${(fileContentData.yolo[0] * 100).toFixed(2)}% ${
+                        fileContentData.names[0]
+                      } -- ${(fileContentData.yolo[1] * 100).toFixed(2)}% ${
+                        fileContentData.names[1]
+                      }`}
                     </p>
                   </div>
-                  <div style={{ textAlign: "center", gap: "4px" }}>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      gap: "4px",
+                      fontSize: "1.5rem",
+                    }}
+                  >
                     CNN Prediction:
                     <p style={{ textAlign: "center" }}>
-                      {` ${(fileContentData.cnn[0][0] * 100).toFixed(
-                        2
-                      )}% edible -- ${(fileContentData.cnn[0][1] * 100).toFixed(
-                        2
-                      )}% poisonous`}
+                      {` ${(fileContentData.cnn[0][0] * 100).toFixed(2)}% ${
+                        fileContentData.names[0]
+                      } -- ${(fileContentData.cnn[0][1] * 100).toFixed(2)}% ${
+                        fileContentData.names[1]
+                      }`}
                     </p>
                   </div>
                 </div>

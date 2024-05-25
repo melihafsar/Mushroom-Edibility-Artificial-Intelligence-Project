@@ -65,7 +65,7 @@ function DragDropFiles({ onDataChange }: any) {
         <img
           src={files && URL.createObjectURL(files)}
           alt="file"
-          style={{ width: "100%", maxHeight: "300px" }}
+          style={{ width: "100%", maxHeight: "80%", objectFit: "cover" }}
         />
         <div className="files">
           <div className="action-buttons">

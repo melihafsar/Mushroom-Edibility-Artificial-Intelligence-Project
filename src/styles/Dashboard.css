@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     background-color: lightgray;
-    height: 50vh;
+    height: 70vh;
 }
 
 .dashboard-card-wrapper {
@@ -51,6 +51,10 @@
     padding: 20px;
     overflow: auto;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 p {
