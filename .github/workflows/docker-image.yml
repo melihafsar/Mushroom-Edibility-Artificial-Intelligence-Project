@@ -31,3 +31,4 @@ jobs:
       
     - name: Push the Docker latest image
       run: docker push ghcr.io/melihafsar/mushroom-classification:latest
+ 
