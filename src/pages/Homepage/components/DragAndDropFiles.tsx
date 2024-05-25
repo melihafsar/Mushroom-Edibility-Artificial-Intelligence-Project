@@ -5,7 +5,7 @@ import axios from "axios";
 function DragDropFiles({ onDataChange }: any) {
   const [files, setFiles] = useState<File | null>(null);
 
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = (e: Event) => {
     e.preventDefault();
@@ -90,13 +90,14 @@ function DragDropFiles({ onDataChange }: any) {
       {!files && (
         <div
           className="dropzone"
-          onDragOver={handleDragOver}
+          onDragOver={() => handleDragOver}
           onDrop={handleDrop}
         >
           <input
             type="file"
             onChange={(e) => {
-              setFiles(e.target.files[0]);
+              const file = e.target.files && e.target.files[0];
+              file && setFiles(file);
               onDataChange("");
             }}
             hidden
@@ -105,7 +106,7 @@ function DragDropFiles({ onDataChange }: any) {
           <button
             className="file-select-button"
             onClick={() => {
-              inputRef.current.click();
+              inputRef.current && inputRef.current.click();
             }}
           >
             Select File
