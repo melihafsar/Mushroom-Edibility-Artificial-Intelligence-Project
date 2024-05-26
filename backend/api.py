@@ -26,7 +26,7 @@ templates = Jinja2Templates(directory="dist")
 
 yolo = YOLO("./best.pt") 
 cnn = load_model("cnn.h5")
-
+ann = load_model("ann.h5")
 
 
 def yolo_predict(image):
@@ -50,6 +50,17 @@ def cnn_predict(image):
     return results.tolist()
 
 
+def ann_predict(image):
+    resized = cv2.resize(image, (128, 128), interpolation=cv2.INTER_LINEAR)
+    # Convert the image to a 3-dimensional numpy array
+    image_array = np.array(resized).reshape(1, 128, 128, 3)
+    print(image_array.shape)
+
+    results = ann.predict(image_array)
+
+    return results.tolist()
+
+
 @app.route("/{full_path:path}")
 def catch_all(request: Request, full_path: Union[str, None] = None):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -63,5 +74,7 @@ def read_item(file: Annotated[UploadFile, File()]):
 
     cnn = cnn_predict(image)
 
+    ann = ann_predict(image)
+
     # Return the result
-    return {"yolo": yolo, "cnn": cnn, "names": ["edible", "poisonous"]}
+    return {"yolo": yolo, "cnn": cnn, "ann": ann,  "names": ["edible", "poisonous"]}
