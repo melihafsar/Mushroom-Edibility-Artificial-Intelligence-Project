@@ -4,6 +4,7 @@ import { useState } from "react";
 type FileContentData = {
   yolo: number[];
   cnn: number[][];
+  ann: number[][];
   names: string[];
 };
 
@@ -83,6 +84,22 @@ function Dashboard() {
                       {` ${(fileContentData.cnn[0][0] * 100).toFixed(2)}% ${
                         fileContentData.names[0]
                       } -- ${(fileContentData.cnn[0][1] * 100).toFixed(2)}% ${
+                        fileContentData.names[1]
+                      }`}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      gap: "4px",
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    ANN Prediction:
+                    <p style={{ textAlign: "center" }}>
+                      {` ${(fileContentData.ann[0][0] * 100).toFixed(2)}% ${
+                        fileContentData.names[0]
+                      } -- ${(fileContentData.ann[0][1] * 100).toFixed(2)}% ${
                         fileContentData.names[1]
                       }`}
                     </p>
